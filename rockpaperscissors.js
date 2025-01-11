@@ -52,7 +52,24 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    for (i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        console.log(`Your choice: ${humanSelection}`);
+        console.log(`Computer choice: ${computerSelection}`);
+        console.log(playRound(humanSelection, computerSelection));
+        console.log(`Your Score: ${humanScore}`)
+        console.log(`Computer Score: ${computerScore}`)
+    }
+    
+    if (computerScore > humanScore) {
+        console.log("Computer wins!")
+    } else if (computerScore < humanScore) {
+        console.log("You win!")
+    } else {
+        console.log("Draw!")
+    }
+}
 
-playRound(humanSelection, computerSelection);
+playGame()
