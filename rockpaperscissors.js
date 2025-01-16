@@ -54,6 +54,8 @@ function playRound(humanChoice, computerChoice) {
 
 // playing the game
 // creating the ui
+const head = document.querySelector("h1");
+head.textContent = "Rock, Paper, Scissors!"
 const choices = document.querySelector("ul");
 const rock = document.createElement("button");
 rock.textContent = "Rock";
