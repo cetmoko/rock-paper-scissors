@@ -52,32 +52,7 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    
-    
-
-    
-    
-
-    // for (i = 0; i < 5; i++) {
-    //     const humanSelection = getHumanChoice();
-    //     const computerSelection = getComputerChoice();
-    //     console.log(`Your choice: ${humanSelection}`);
-    //     console.log(`Computer choice: ${computerSelection}`);
-    //     console.log(playRound(humanSelection, computerSelection));
-    //     console.log(`Your Score: ${humanScore}`)
-    //     console.log(`Computer Score: ${computerScore}`)
-    // }
-    
-    // if (computerScore > humanScore) {
-    //     console.log("Computer wins!")
-    // } else if (computerScore < humanScore) {
-    //     console.log("You win!")
-    // } else {
-    //     console.log("Draw!")
-    // }
-}
-
+// playing the game
 // creating the ui
 const choices = document.querySelector("ul");
 const rock = document.createElement("button");
@@ -93,7 +68,33 @@ choices.appendChild(rock);
 choices.appendChild(paper);
 choices.appendChild(scissors);
 
-// getting human input and playing
-rock.addEventListener('click', function() {console.log(playRound('rock', getComputerChoice()))});
-paper.addEventListener('click', function() {console.log(playRound('paper', getComputerChoice()))});
-scissors.addEventListener('click', function() {console.log(playRound('scissors', getComputerChoice()))});
+function playGame(humanChoice) {
+    const computerChoice = getComputerChoice();
+    const stats = document.querySelector("div");
+    let humanMove = document.createElement("p");
+    humanMove.textContent = `Your move: ${humanChoice}`;
+    let computerMove = document.createElement("p");
+    computerMove.textContent = `Computer's move: ${computerChoice}`;
+
+    let result = document.createElement("h4");
+    result.textContent = playRound(humanChoice, computerChoice) + `; Your Score: ${humanScore}; Computer's Score: ${computerScore}`;
+
+    stats.appendChild(humanMove);
+    stats.appendChild(computerMove);
+    stats.appendChild(result);
+
+    // checking winner
+    const win = document.createElement("h3");
+    if (humanScore === 5) {
+        win.textContent = "You win the game!";
+        stats.appendChild(win);
+    } else if (computerScore === 5) {
+        win.textContent = "Computer wins the game!";
+        stats.appendChild(win);
+    };
+}
+
+rock.addEventListener('click', function() {playGame("rock")});
+paper.addEventListener('click', function() {playGame("paper")});
+scissors.addEventListener('click', function() {playGame("scissors")});
+
